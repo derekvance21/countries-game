@@ -56,4 +56,5 @@ class Trie {
 
 // console.log(JSON.stringify(countries));
 
-module.exports = Trie;
+// module.exports = Trie;
+export default Trie;
