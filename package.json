@@ -1,7 +1,6 @@
 {
   "name": "countries-game",
   "version": "0.1.0",
-  "homepage": "https://derekvance21.github.io/countries-game/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",

@@ -36,7 +36,10 @@ const getMap = () => {
         .classed("no-fill", true)
         .attr("d", geoGenerator)
         .attr("fill", "#fff")
-        .attr("stroke", "#666");
+        .attr("stroke", "#333");
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
