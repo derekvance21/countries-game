@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/derekvance21/countries-game/static/css/main.3fd12dc9.chunk.css",
-    "main.js": "/derekvance21/countries-game/static/js/main.a106c746.chunk.js",
-    "main.js.map": "/derekvance21/countries-game/static/js/main.a106c746.chunk.js.map",
-    "runtime-main.js": "/derekvance21/countries-game/static/js/runtime-main.6ba2e5b0.js",
-    "runtime-main.js.map": "/derekvance21/countries-game/static/js/runtime-main.6ba2e5b0.js.map",
-    "static/js/2.b9fc124e.chunk.js": "/derekvance21/countries-game/static/js/2.b9fc124e.chunk.js",
-    "static/js/2.b9fc124e.chunk.js.map": "/derekvance21/countries-game/static/js/2.b9fc124e.chunk.js.map",
-    "static/js/3.6b5db999.chunk.js": "/derekvance21/countries-game/static/js/3.6b5db999.chunk.js",
-    "static/js/3.6b5db999.chunk.js.map": "/derekvance21/countries-game/static/js/3.6b5db999.chunk.js.map",
-    "index.html": "/derekvance21/countries-game/index.html",
-    "static/css/main.3fd12dc9.chunk.css.map": "/derekvance21/countries-game/static/css/main.3fd12dc9.chunk.css.map",
-    "static/js/2.b9fc124e.chunk.js.LICENSE.txt": "/derekvance21/countries-game/static/js/2.b9fc124e.chunk.js.LICENSE.txt"
+    "main.css": "/countries-game/static/css/main.3fd12dc9.chunk.css",
+    "main.js": "/countries-game/static/js/main.a106c746.chunk.js",
+    "main.js.map": "/countries-game/static/js/main.a106c746.chunk.js.map",
+    "runtime-main.js": "/countries-game/static/js/runtime-main.3c5451bf.js",
+    "runtime-main.js.map": "/countries-game/static/js/runtime-main.3c5451bf.js.map",
+    "static/js/2.b9fc124e.chunk.js": "/countries-game/static/js/2.b9fc124e.chunk.js",
+    "static/js/2.b9fc124e.chunk.js.map": "/countries-game/static/js/2.b9fc124e.chunk.js.map",
+    "static/js/3.6b5db999.chunk.js": "/countries-game/static/js/3.6b5db999.chunk.js",
+    "static/js/3.6b5db999.chunk.js.map": "/countries-game/static/js/3.6b5db999.chunk.js.map",
+    "index.html": "/countries-game/index.html",
+    "static/css/main.3fd12dc9.chunk.css.map": "/countries-game/static/css/main.3fd12dc9.chunk.css.map",
+    "static/js/2.b9fc124e.chunk.js.LICENSE.txt": "/countries-game/static/js/2.b9fc124e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6ba2e5b0.js",
+    "static/js/runtime-main.3c5451bf.js",
     "static/js/2.b9fc124e.chunk.js",
     "static/css/main.3fd12dc9.chunk.css",
     "static/js/main.a106c746.chunk.js"
