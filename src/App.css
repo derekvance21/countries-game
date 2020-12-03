@@ -64,11 +64,12 @@ button:focus {
 /* MAP */
 
 #map {
-  margin: 2rem 0;
   border-radius: 20px;
-  border: 2px solid rgb(68, 68, 68);
   background-color: #eee;
+  width: 100%;
+  height: auto;
 }
+
 
 .africa {
   fill: #fee440

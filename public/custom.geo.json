@@ -23765,6 +23765,318 @@
         "type": "Point",
         "coordinates": [-60.9682, 13.8817 ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saint Kitts and Nevis",
+        "iso_a3": "KNA",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -62.75, 17.333333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saint Vincent and the Grenadines",
+        "iso_a3": "VCT",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-61.2, 13.25 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Antigua and Barbuda",
+        "iso_a3": "ATG",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-61.8, 17.05 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grenada",
+        "iso_a3": "GRD",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-61.666667, 12.116667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dominica",
+        "iso_a3": "DMA",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-61.333333, 15.416667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Singapore",
+        "iso_a3": "SGP",
+        "continent": "Asia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.833333, 1.283333 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bahrain",
+        "iso_a3": "BHR",
+        "continent": "Asia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [50.55, 26.0275 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Liechtenstein",
+        "iso_a3": "LIE",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [9.55, 47.14]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "San Marino",
+        "iso_a3": "SMR",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 12.458333, 43.941667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vatican City",
+        "iso_a3": "VAT",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.453333, 41.903333 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Andorra",
+        "iso_a3": "AND",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 1.516667, 42.5 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Monaco",
+        "iso_a3": "MCO",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 7.416667, 43.733333 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Malta",
+        "iso_a3": "MLT",
+        "continent": "Europe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 14.516667, 35.9 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Comoros",
+        "iso_a3": "COM",
+        "continent": "Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 44.25, -12.166667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sao Tome and Principe",
+        "iso_a3": "STP",
+        "continent": "Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [7, 1 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cape Verde",
+        "iso_a3": "CPV",
+        "continent": "Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -23.616667, 15.111111]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mauritius",
+        "iso_a3": "MUS",
+        "continent": "Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 57.5, -20.2 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Seychelles",
+        "iso_a3": "SYC",
+        "continent": "Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 55.666667, -4.583333 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maldives",
+        "iso_a3": "MDV",
+        "continent": "Asia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 73.51, 3.17 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tonga",
+        "iso_a3": "TON",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -175, -20 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Samoa",
+        "iso_a3": "WSM",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -172.333333, -13.583333 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kiribati",
+        "iso_a3": "KIR",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 173, 1.416667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Micronesia",
+        "iso_a3": "FSM",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 158.25, 6.916667 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marshall Islands",
+        "iso_a3": "MHL",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 168, 9 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Palau",
+        "iso_a3": "PLW",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 134.5, 7.5 ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nauru",
+        "iso_a3": "NRU",
+        "continent": "Oceania"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ 166.916667, -0.533333 ]
+      }
     }
   ]
 }

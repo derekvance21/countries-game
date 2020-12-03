@@ -10,20 +10,21 @@ const getMap = () => {
   })
     .then((response) => response.json())
     .then((bb) => {
-      let width = 1000;
-      let height = 500;
+      let width = parseInt(d3.select("#map").style("width"));
+      let height = 600
       let projection = d3.geoEqualEarth();
       projection.fitSize([width, height], bb);
-      let geoGenerator = d3.geoPath().projection(projection);
+      let geoGenerator = d3.geoPath().pointRadius(2).projection(projection);
 
       let svg = d3
         .select("#map")
         .append("svg")
         .attr("viewBox", [0, 0, width, height]) // prolly dont need this
-        .style("width", width + "px")
-        .style("height", height + "px")
+        // .style("width", width + "px")
+        // .style("height", height + "px")
+        .attr("preserveAspectRatio", "xMinYMin")
         .call(d3.zoom()
-        .scaleExtent([1,8])
+        .scaleExtent([0.9,8])
           .extent([[0, 0], [width, height]])
           .on("zoom", ({transform}) => {d3.select("#map svg g").attr("transform", transform)}))
 
