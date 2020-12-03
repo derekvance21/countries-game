@@ -24,15 +24,28 @@ class Trie {
     }
   }
 
+  // takes key and returns the node after traversing trie with key.
+  // periods are ignored
   nodeAt(key) {
+    console.log(this)
     if (key) {
       const char = key.slice(0, 1).toLowerCase();
-      if (this.children[char]) {
-        return this.children[char].nodeAt(key.slice(1).toLowerCase());
-      }
+      return this.nextNode(char) ? this.nextNode(char).nodeAt(key.slice(1).toLowerCase()) : undefined;
     } else {
       return this;
     }
+  }
+
+  nextNode(char) {
+    if (char === ".") {
+      return this;
+    } else {
+      return this.children[char];
+    }
+  }
+
+  isCountryNode() {
+    return this.id !== null
   }
 
   // BFS print function

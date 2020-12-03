@@ -1,7 +1,15 @@
-import { useState } from "react";
+import {
+  useState
+} from "react";
 import "./App.css";
-import { countriesTrie, allCountries } from "./utils/loadCountries.js";
-import getMap, { colorCountry, clearColors } from "./components/map.js";
+import {
+  countriesTrie,
+  allCountries
+} from "./utils/loadCountries.js";
+import getMap, {
+  colorCountry,
+  clearColors
+} from "./components/map.js";
 import Timer from "./components/timer.js";
 
 let currentNode = countriesTrie;
@@ -16,32 +24,28 @@ function App() {
 
   function onInputChange(e) {
     const input = e.target.value;
-    // backspace was pressed (onChange React event issue)
-    if (input.length < inputText.length) {
+    // backspace or insertion    
+    if (input.slice(0, -1) !== inputText) {
       currentNode = countriesTrie.nodeAt(input);
-    } else {
+    } else { // traverse
       const char = input.charAt(input.length - 1).toLowerCase();
-
-      if (currentNode) {
-        currentNode = currentNode.children[char];
-        if (
-          currentNode &&
-          currentNode.id !== null &&
-          namedCountriesArray[currentNode.id] === 0
-        ) {
-          namedCountriesArray[currentNode.id] = 1;
-          setCountriesNamed((prevValue) => prevValue + 1);
-          if (countriesNamed === allCountries.length) {
-            setGameState("gameover");
-          }
-          colorCountry(allCountries[currentNode.id].code);
-          setInputText("");
-          currentNode = countriesTrie;
-          return;
-        }
-      }
+      currentNode = currentNode ? currentNode.nextNode(char) : currentNode;
     }
-    setInputText(input);
+    // currentNode is real and insertion or new character; thus also check if country named
+    if (currentNode && (inputText.slice(0, -1) !== input || input.length !== inputText.length - 1) &&
+      currentNode.isCountryNode() && namedCountriesArray[currentNode.id] === 0) {
+      namedCountriesArray[currentNode.id] = 1; // mark country as named
+      setCountriesNamed((prevValue) => prevValue + 1);
+      colorCountry(allCountries[currentNode.id].code);
+      setInputText("");
+      if (countriesNamed === allCountries.length) {
+        setGameState("gameover");
+      }
+      currentNode = countriesTrie;
+      return;
+    } else {
+      setInputText(input);
+    }
   }
 
   function onGameStart() {

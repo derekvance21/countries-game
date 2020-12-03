@@ -19,8 +19,13 @@ const getMap = () => {
       let svg = d3
         .select("#map")
         .append("svg")
+        .attr("viewBox", [0, 0, width, height]) // prolly dont need this
         .style("width", width + "px")
-        .style("height", height + "px");
+        .style("height", height + "px")
+        .call(d3.zoom()
+        .scaleExtent([1,8])
+          .extent([[0, 0], [width, height]])
+          .on("zoom", ({transform}) => {d3.select("#map svg g").attr("transform", transform)}))
 
       svg
         .append("g")
@@ -36,15 +41,44 @@ const getMap = () => {
         .classed("no-fill", true)
         .attr("d", geoGenerator)
         .attr("fill", "#fff")
-        .attr("stroke", "#333");
+        .attr("stroke", "#333")
+        .attr("stroke-width", "0.5")
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
+const colorPath = function (iso3) {
+  d3.select(`#${iso3}`).classed("no-fill", false);
+}
+
 const colorCountry = function (code) {
-  d3.select(`#${code}`).classed("no-fill", false);
+  colorPath(code)
+  switch(code) {
+    case 'DNK':
+      colorPath('GRL')
+      break;
+    case 'FRA':
+      colorPath('NCL')
+      break;
+    case 'SOM':
+      colorPath('SML')
+      break;
+    case 'CYP':
+      colorPath('NCY')
+      break;
+    case 'MAR':
+      colorPath('ESH')
+      break;
+    case 'USA':
+      colorPath('PRI')
+      break;
+    case 'GBR':
+      colorPath('FLK')
+      break;
+    default:
+  }
 };
 
 const clearColors = function () {

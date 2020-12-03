@@ -10,27 +10,34 @@ function twoDigitSeconds(seconds) {
   }
 }
 
+let timerStart;
+let timerEnd;
+
 export default function Timer(props) {
   // const [isActive, setIsActive] = useState(true);
-  const [secondsLeft, setSecondsLeft] = useState(minutes * 60);
-
+  const [millisecondsLeft, setMillisecondsLeft] = useState(minutes * 60000);
+  
   useEffect(() => {
-    if (secondsLeft === 0) {
-      // setIsActive(false);
+    timerStart = new Date();
+    // .getTime() returns milliseconds, so multiply minutes by 60,000
+    timerEnd = new Date(timerStart.getTime() + minutes * 60000);
+  }, []) // [] as second parameter means only run on mounting, NOT updating
+  
+  useEffect(() => {
+    if (millisecondsLeft < 0) {
       props.onGameOver();
     } else {
       const tick = setInterval(function () {
-        setSecondsLeft((prevValue) => prevValue - 1);
+        setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
       }, 1000);
       return () => clearInterval(tick);
     }
   });
+  
 
   return (
     <div>
-      <p>{`${Math.floor(secondsLeft / 60)}:${twoDigitSeconds(
-        secondsLeft % 60
-      )}`}</p>
+      <p>{`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p>
     </div>
   );
 }

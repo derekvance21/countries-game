@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%;
+}
+
 p {
   margin: 10px;
 }
@@ -30,7 +34,7 @@ p {
 input {
   padding: 5px;
   color: #282c34;
-  font-size: 1rem;
+  font-size: 2rem;
   font-family: sans-serif;
 }
 
@@ -43,9 +47,9 @@ button {
   background: #0069ed;
   color: #ffffff;
   font-family: sans-serif;
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 5px;
-  margin-left: 4px;
+  margin-left: 1rem;
   cursor: pointer;
   text-align: center;
 }
@@ -53,29 +57,36 @@ button {
 button:hover,
 button:focus {
     background: #0085ff;
+    transform: translateY(-2px);
+    box-shadow: 4px 0 8px #111
 }
 
 /* MAP */
 
 #map {
-  width: 100%;
-  overflow-x: scroll;
+  margin: 2rem 0;
+  border-radius: 20px;
+  border: 2px solid rgb(68, 68, 68);
+  background-color: #eee;
 }
 
 .africa {
-  fill: #ee1;
+  fill: #fee440
 }
 
 .asia {
-  fill: #33c;
+  /* fill: #33c; */
+  fill: #00f5d4
 }
 
 .europe {
-  fill: #3c6;
+  /* fill: #3c6; */
+  fill: #00bbf9
 }
 
 .north-america {
-  fill: #c83;
+  /* fill: rgb(196, 255, 87); */
+  fill: #ff6b6b
 }
 
 .south-america {
@@ -83,7 +94,8 @@ button:focus {
 }
 
 .oceania {
-  fill: #63c;
+  /* fill: #63c; */
+  fill: #ff006e
 }
 
 .no-fill {
