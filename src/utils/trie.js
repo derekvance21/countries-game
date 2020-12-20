@@ -27,7 +27,6 @@ class Trie {
   // takes key and returns the node after traversing trie with key.
   // periods are ignored
   nodeAt(key) {
-    console.log(this)
     if (key) {
       const char = key.slice(0, 1).toLowerCase();
       return this.nextNode(char) ? this.nextNode(char).nodeAt(key.slice(1).toLowerCase()) : undefined;

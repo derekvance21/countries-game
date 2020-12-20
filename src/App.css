@@ -3,7 +3,7 @@ html {
 }
 
 p {
-  margin: 10px;
+  margin: 5px;
 }
 
 .App-header {
@@ -33,6 +33,7 @@ p {
 
 input {
   padding: 5px;
+  margin: 5px;
   color: #282c34;
   font-size: 2rem;
   font-family: sans-serif;
@@ -61,18 +62,32 @@ button:focus {
     box-shadow: 4px 0 8px #111
 }
 
+/* TABLE */
+table {
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0 1rem;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #373d47;
+}
+
 /* MAP */
 
 #map {
   border-radius: 20px;
   background-color: #eee;
-  width: 100%;
+  width: 96%;
   height: auto;
 }
 
 
 .africa {
-  fill: #fee440
+  fill: #fff01c
 }
 
 .asia {

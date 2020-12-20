@@ -24077,6 +24077,18 @@
         "type": "Point",
         "coordinates": [ 166.916667, -0.533333 ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barbados",
+        "iso_a3": "BRB",
+        "continent": "North America"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -59.5525, 13.17 ]
+      }
     }
   ]
 }

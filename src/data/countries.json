@@ -67,7 +67,7 @@
   { "name": "Grenada", "code": "GRD" },
   { "name": "Guatemala", "code": "GTM" },
   { "name": "Guinea", "code": "GIN" },
-  { "name": "Guinea-Bissau", "code": "GNB" },
+  { "name": "Guinea-Bissau", "alias": "Guinea Bissau", "code": "GNB" },
   { "name": "Guyana", "code": "GUY" },
   { "name": "Haiti", "code": "HTI" },
   { "name": "Honduras", "code": "HND" },
