@@ -133,6 +133,9 @@ function App() {
   }
 
   function onGameOver() {
+    if (millisecondsLeft > 0) {
+      setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
+    }
     const secondsLeft = Math.floor(millisecondsLeft / 1000);
     const gameObject = {
       name: name,
