@@ -86,7 +86,8 @@ function App() {
       onGameOver();
     } else if (gameState === "playing") {
       const tick = setInterval(function () {
-        setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
+        const newMillisecondsLeft = timerEnd.getTime() - new Date().getTime()
+        setMillisecondsLeft(newMillisecondsLeft < 0 ? 0 : newMillisecondsLeft);
       }, 1000);
       return () => clearInterval(tick);
     }
@@ -138,6 +139,7 @@ function App() {
       secondsLeft: Math.floor(millisecondsLeft / 1000),
       namedCountryCodes: namedCountriesArray.map((isNamed, index) => isNamed && allCountries[index].code).filter(code => code)
     }
+    setGameState("loading");
     fetch(BACKEND_URL, {
       method: 'POST',
       mode: 'cors',
