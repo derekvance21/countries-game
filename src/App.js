@@ -19,7 +19,8 @@ let namedCountriesArray = new Array(allCountries.length).fill(false);
 
 getMap();
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000/';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000/';
+console.log('BACKEND_URL', BACKEND_URL)
 const minutes = 15;
 const totalMilliseconds = minutes * 60000;
 
@@ -137,7 +138,6 @@ function App() {
       secondsLeft: Math.floor(millisecondsLeft / 1000),
       namedCountryCodes: namedCountriesArray.map((isNamed, index) => isNamed && allCountries[index].code).filter(code => code)
     }
-    console.log(gameObject)
     fetch(BACKEND_URL, {
       method: 'POST',
       mode: 'cors',
