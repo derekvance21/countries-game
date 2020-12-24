@@ -25,34 +25,50 @@ let timerStart;
 let timerEnd;
 
 let leaderboard = [];
+let countryTable = [];
 
 const leaderboardColumns = [{
-    field: 'place',
-    headerName: 'Place',
+  field: 'place',
+  headerName: 'Place',
+  sortAscending: true,
+  initSort: true,
+  width: 2
+},
+{
+  field: 'name',
+  headerName: 'Name',
+  width: 6
+},
+{
+  field: 'score',
+  headerName: 'Score',
+  width: 2
+},
+{
+  field: 'secondsLeft',
+  headerName: 'Seconds Remaining',
+  width: 2
+}
+]
+
+const countryTableColumns = [
+  {
+    field: 'country',
+    headerName: 'Country',
     sortAscending: true,
     initSort: true,
     width: 2
   },
   {
-    field: 'name',
-    headerName: 'Name',
+    field: 'popularity',
+    headerName: 'Popularity',
     width: 6,
-    unSortable: true
   },
   {
-    field: 'score',
-    headerName: 'Score',
-    width: 2
-  },
-  {
-    field: 'secondsLeft',
-    headerName: 'Seconds Remaining',
+    field: 'named',
+    headerName: 'Named',
     width: 2
   }
-]
-
-const countriesColumns = [
-
 ]
 
 function App() {
@@ -86,13 +102,15 @@ function App() {
     if (currentNode && (inputText.slice(0, -1) !== input || input.length !== inputText.length - 1) &&
       currentNode.isCountryNode() && !namedCountriesArray[currentNode.id]) {
       namedCountriesArray[currentNode.id] = true; // mark country as named
-      setCountriesNamed((prevValue) => prevValue + 1);
       colorCountry(allCountries[currentNode.id].code);
       setInputText("");
-      if (countriesNamed === allCountries.length) {
-        onGameOver();
-      }
       currentNode = countriesTrie;
+      setCountriesNamed((prevValue) => {
+        if (prevValue + 1 === allCountries.length) {
+          onGameOver();
+        }
+        return prevValue + 1
+      });
       return;
     } else {
       setInputText(input);
@@ -114,30 +132,46 @@ function App() {
     const gameObject = {
       name: name,
       score: countriesNamed,
-      secondsLeft: Math.floor(millisecondsLeft / 1000)
+      secondsLeft: Math.floor(millisecondsLeft / 1000),
+      namedCountryCodes: namedCountriesArray.map((isNamed, index) => isNamed && allCountries[index].code).filter(code => code)
     }
+    console.log(gameObject)
     fetch('http://localhost:8000/', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(gameObject)
-      })
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(gameObject)
+    })
       .then(response => response.json())
-      .then(games => {
-        console.log(games)
-
-        // leaderboard = <DataGrid rows={games.map((value, index) => ({...value, id: index}))} columns={leaderboardColumns} />
-        leaderboard = < SortableTable rows = {
-          games.map((game, index) => ({
-            ...game,
-            place: index + 1
-          }))
-        }
-        columns = {
-          leaderboardColumns
-        }
+      .then(responseJSON => {
+        console.log(responseJSON)
+        const {topTen, countryCounts, totalGames} = responseJSON
+        leaderboard = <SortableTable 
+          id="leaderboard-table"
+          rows={
+            topTen.map((game, index) => ({
+              ...game,
+              place: index + 1,
+              color: game.activeGame ? 'lime' : 'inherit'
+            }))
+          }
+          columns={leaderboardColumns}
+          title="Top Ten High Scores"
+        />
+        countryTable = <SortableTable 
+          id="country-table"
+          rows={namedCountriesArray.map((isNamed, countryIndex) => {
+            return {
+              country: allCountries[countryIndex].name,
+              popularity: `${Math.floor(100 * countryCounts[allCountries[countryIndex].code] / totalGames)}%`,
+              color: isNamed ? 'lime' : '#ff4646',
+              named: isNamed ? 'Yes' : 'No'
+            }
+          })}
+          columns={countryTableColumns}
+          title="All Countries"
         />
 
         setGameState("gameover");
@@ -149,104 +183,58 @@ function App() {
     return seconds < 10 ? `0${seconds}` : seconds;
   }
 
-  return ( <
-    div className = "App" >
-    <
-    header className = "App-header" > {
-      gameState === "playing" ? ( <
-        div >
-        <
-        p > {
+  return (<div className="App" >
+    <header className="App-header" > {
+      gameState === "playing" ? (<div>
+        <p> {
           `${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`
-        } < /p> < /
-        div >
-      ) : ( <
-        p > 15: 00 < /p>
-      )
+        } </p> </div>
+      ) : (<p > 15:00 </p>)
     } {
-      gameState === "ready" ? ( <
-        p > Name all 197 countries before time runs out! < /p>
-      ) : ( <
-        p > {
+        gameState === "ready" ? (<p> Name all 197 countries before time runs out! </p>
+        ) : (<p> {
           countriesNamed
         }
-        /{allCountries.length} < /
-        p >
-      )
-    } <
-    div > {
-      gameState === "playing" ? ( <
-        input type = "text"
-        id = "countryInput"
-        value = {
-          inputText
-        }
-        onChange = {
-          onInputChange
-        }
-        style = {
-          {
-            display: "inline-block"
+        /{allCountries.length} </p>
+          )
+      } <div> {
+        gameState === "playing" ? (<input
+          type="text"
+          id="countryInput"
+          value={
+            inputText
           }
-        }
-        />
-      ) : ( <
-        input type = "text"
-        id = "nameInput"
-        value = {
-          name
-        }
-        placeholder = "Enter a name"
-        onChange = {
-          (e) => setName(e.target.value)
-        }
-        />
-      )
-    } {
-      gameState === "playing" ? ( <
-        button style = {
-          {
-            display: "inline-block"
+          onChange={
+            onInputChange
           }
-        }
-        onClick = {
-          onGameOver
-        } >
-        Give Up <
-        /button>
-      ) : ( <
-        button onClick = {
-          onGameStart
-        } > Start Game! < /button>
-      )
-    } <
-    /div> <
-    div id = "map" > < /div> {
-    gameState === "gameover" &&
-    ( < div > {
-        leaderboard
-      } <
-      /div>)
-    } {
-      gameState === "gameover" &&
-        namedCountriesArray.map((value, index) => {
-          return ( <
-            span key = {
-              index
+          style={
+            {
+              display: "inline-block"
             }
-            style = {
-              {
-                color: value ? "lime" : "red"
-              }
-            } > {
-              allCountries[index].name
-            } <
-            /span>
-          );
-        })
-    } <
-    /header> < /
-    div >
+          }
+        />
+        ) : (<input
+          type="text"
+          id="nameInput"
+          value={
+            name
+          }
+          placeholder="Enter a name"
+          onChange={
+            (e) => setName(e.target.value)
+          }
+        />
+          )
+      } {
+          gameState === "playing" ? (<button style={{ display: "inline-block" }} onClick={onGameOver}>Submit Game</button>)
+            : (<button onClick={onGameStart}>Start Game!</button>)
+        } </div>
+      <div id="map"></div>
+      {gameState === "gameover" &&
+        (<div className="tableDiv"> {leaderboard} {countryTable} </div>)
+      }
+    </header>
+  </div>
   );
 }
 

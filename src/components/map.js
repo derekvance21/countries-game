@@ -10,10 +10,13 @@ const getMap = () => {
   })
     .then((response) => response.json())
     .then((bb) => {
-      let width = parseInt(d3.select("#map").style("width"));
-      let height = 600
-      let projection = d3.geoEqualEarth();
-      projection.fitSize([width, height], bb);
+      const width = parseInt(d3.select("#map").style("width"));
+      // const height = 600
+      const height = window.innerHeight * 0.7;
+      const aspectRatio = width / height;
+      let projection = d3.geoEqualEarth()
+        .fitSize([width, height], bb)
+        .scale(aspectRatio * 45 + 140)
       let geoGenerator = d3.geoPath().pointRadius(2).projection(projection);
 
       let svg = d3

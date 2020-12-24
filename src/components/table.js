@@ -4,14 +4,15 @@ import React, {useState} from "react";
 // field: should be present in every object in rows
 // (optional) headerName: what will display in table header
 
-const SortableTable = ({rows, columns}) => {
+const SortableTable = ({rows, columns, title, id}) => {
     const [sortField, setSortField] = useState(columns.find(column => column.initSort).field || columns[0].field);
     const [sortReverse, setSortReverse] = useState(false);
 
     const fields = columns.map(column => column.field)
     
     return (
-        <table>
+        <table id={id}>
+            <caption>{title}</caption>
             <thead>
                 <tr>
                     {columns.map(column => (
@@ -27,9 +28,12 @@ const SortableTable = ({rows, columns}) => {
             </thead>
             <tbody>
                 {rows.sort((a, b) => {
-                    return (columns.find(column => column.field === sortField).sortAscending ? -1 : 1) * (sortReverse ? -1 : 1) * (b[sortField] - a[sortField])
+                    return (
+                        columns.find(column => column.field === sortField).sortAscending ? -1 : 1) 
+                        * (sortReverse ? -1 : 1) 
+                        * (b[sortField].toString().localeCompare(a[sortField].toString(), undefined, {numeric: true}))
                 }).map((row, index) => (
-                    <tr key={index} style={{color: row.activeGame ? 'lime': "inherit"}}>
+                    <tr key={index} style={{color: row.color}}>
                         {fields.map(field => (
                             <td>{row[field]}</td>
                         ))}

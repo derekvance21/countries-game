@@ -1,5 +1,6 @@
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 p {
@@ -16,19 +17,6 @@ p {
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.countries-list {
-  width: 100%;
-  max-height: 80vh;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 input {
@@ -64,16 +52,32 @@ button:focus {
 
 /* TABLE */
 table {
-  margin: 1rem 0;
+  margin: 1rem auto;
+}
+
+table caption {
+  font-size: 150%;
+}
+
+#leaderboard {
+  font-size: inherit;
+}
+
+#country-table {
+  font-size: 1.6rem;
 }
 
 th, td {
-  padding: 0 1rem;
+  padding: 0 0.6rem;
   border: 1px solid #ccc;
 }
 
 th {
   background-color: #373d47;
+}
+
+th:hover {
+  background-color: #69707a;
 }
 
 /* MAP */
@@ -82,7 +86,8 @@ th {
   border-radius: 20px;
   background-color: #eee;
   width: 96%;
-  height: auto;
+  /* height: auto; */
+  max-height: 90%;
 }
 
 

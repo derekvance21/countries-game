@@ -4,7 +4,6 @@ const allCountries = require("../data/countries.json");
 
 let countriesTrie = new Trie();
 allCountries.forEach((country, index) => {
-  console.log(country.code)
   countriesTrie.insert(country.name, index);
   if (country.alias) {
     countriesTrie.insert(country.alias, index);
