@@ -133,10 +133,8 @@ function App() {
   }
 
   function onGameOver() {
-    if (millisecondsLeft > 0) {
-      setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
-    }
-    const secondsLeft = Math.floor(millisecondsLeft / 1000);
+    const endMillisecondsLeft = timerEnd.getTime() - new Date().getTime()
+    const secondsLeft = Math.floor(endMillisecondsLeft / 1000)
     const gameObject = {
       name: name,
       score: countriesNamed,
@@ -192,55 +190,48 @@ function App() {
   }
 
   return (<div className="App" >
-    <header className="App-header" > {
-      gameState === "playing" ? (<div>
-        <p> {
-          `${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`
-        } </p> </div>
+    <header className="App-header"> 
+      {gameState === "playing" ? (
+        <div>
+          <p> {`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p> 
+        </div>
       ) : (<p > 15:00 </p>)
-    } {
-        gameState === "ready" ? (<p> Name all 197 countries before time runs out! </p>
-        ) : (<p> {
-          countriesNamed
+      } 
+      {gameState === "ready" ? (
+        <p> Name all 197 countries before time runs out! </p>
+        ) : (
+        <p> {countriesNamed}/{allCountries.length}</p>
+        )
+      } 
+      <div>
+        {gameState === "playing" ? (
+          <input
+            type="text"
+            id="countryInput"
+            value={inputText}
+            onChange={onInputChange}
+          style={{display: "inline-block"}}
+        />
+        ) : (
+          <input
+            type="text"
+            id="nameInput"
+            value={name}
+            placeholder="Enter a name"
+            onChange={(e) => setName(e.target.value)}
+          />
+        )
+        } 
+        {gameState === "playing" ? (
+          <button style={{ display: "inline-block" }} onClick={onGameOver}>Submit Game</button>
+          ) : (
+          <button placeholder="Name" onClick={onGameStart}>Start Game!</button>)
+        } 
+        </div>
+        <div id="map"></div>
+        {gameState === "gameover" &&
+          (<div className="tableDiv"> {leaderboard} {countryTable} </div>)
         }
-        /{allCountries.length} </p>
-          )
-      } <div> {
-        gameState === "playing" ? (<input
-          type="text"
-          id="countryInput"
-          value={
-            inputText
-          }
-          onChange={
-            onInputChange
-          }
-          style={
-            {
-              display: "inline-block"
-            }
-          }
-        />
-        ) : (<input
-          type="text"
-          id="nameInput"
-          value={
-            name
-          }
-          placeholder="Enter a name"
-          onChange={
-            (e) => setName(e.target.value)
-          }
-        />
-          )
-      } {
-          gameState === "playing" ? (<button style={{ display: "inline-block" }} onClick={onGameOver}>Submit Game</button>)
-            : (<button onClick={onGameStart}>Start Game!</button>)
-        } </div>
-      <div id="map"></div>
-      {gameState === "gameover" &&
-        (<div className="tableDiv"> {leaderboard} {countryTable} </div>)
-      }
     </header>
   </div>
   );
