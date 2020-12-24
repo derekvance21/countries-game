@@ -12,6 +12,7 @@ import getMap, {
   clearColors
 } from "./components/map.js";
 import SortableTable from "./components/table.js";
+require("dotenv").config();
 
 let currentNode = countriesTrie;
 let namedCountriesArray = new Array(allCountries.length).fill(false);
