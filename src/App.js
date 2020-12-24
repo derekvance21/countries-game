@@ -82,7 +82,7 @@ function App() {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (millisecondsLeft < 0) {
+    if (millisecondsLeft <= 0) {
       onGameOver();
     } else if (gameState === "playing") {
       const tick = setInterval(function () {
