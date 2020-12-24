@@ -20,7 +20,6 @@ let namedCountriesArray = new Array(allCountries.length).fill(false);
 getMap();
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000/';
-console.log('BACKEND_URL', BACKEND_URL)
 const minutes = 15;
 const totalMilliseconds = minutes * 60000;
 
@@ -82,14 +81,15 @@ function App() {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (millisecondsLeft <= 0) {
-      onGameOver();
-    } else if (gameState === "playing") {
-      const tick = setInterval(function () {
-        const newMillisecondsLeft = timerEnd.getTime() - new Date().getTime()
-        setMillisecondsLeft(newMillisecondsLeft < 0 ? 0 : newMillisecondsLeft);
-      }, 1000);
-      return () => clearInterval(tick);
+    if (gameState === "playing") {
+      if (millisecondsLeft <= 0) {
+        onGameOver();
+      } else {
+        const tick = setInterval(function () {
+          setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
+        }, 1000);
+        return () => clearInterval(tick);
+      }
     }
   });
 
@@ -133,10 +133,11 @@ function App() {
   }
 
   function onGameOver() {
+    const secondsLeft = Math.floor(millisecondsLeft / 1000);
     const gameObject = {
       name: name,
       score: countriesNamed,
-      secondsLeft: Math.floor(millisecondsLeft / 1000),
+      secondsLeft: secondsLeft < 0 ? 0 : secondsLeft,
       namedCountryCodes: namedCountriesArray.map((isNamed, index) => isNamed && allCountries[index].code).filter(code => code)
     }
     setGameState("loading");
