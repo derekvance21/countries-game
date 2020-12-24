@@ -122,7 +122,7 @@ function App() {
   }
 
   function onGameStart() {
-    if (inputText) {
+    if (name) {
       setMillisecondsLeft(totalMilliseconds)
       timerStart = new Date();
       timerEnd = new Date(timerStart.getTime() + totalMilliseconds);
