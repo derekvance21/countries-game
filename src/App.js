@@ -122,14 +122,16 @@ function App() {
   }
 
   function onGameStart() {
-    setMillisecondsLeft(totalMilliseconds)
-    timerStart = new Date();
-    timerEnd = new Date(timerStart.getTime() + totalMilliseconds);
-    setGameState("playing");
-    setInputText("");
-    namedCountriesArray = new Array(allCountries.length).fill(false)
-    setCountriesNamed(0);
-    clearColors();
+    if (inputText) {
+      setMillisecondsLeft(totalMilliseconds)
+      timerStart = new Date();
+      timerEnd = new Date(timerStart.getTime() + totalMilliseconds);
+      setGameState("playing");
+      setInputText("");
+      namedCountriesArray = new Array(allCountries.length).fill(false)
+      setCountriesNamed(0);
+      clearColors();
+    }
   }
 
   function onGameOver() {
@@ -200,7 +202,7 @@ function App() {
       {gameState === "ready" ? (
         <p> Name all 197 countries before time runs out! </p>
         ) : (
-        <p> {countriesNamed}/{allCountries.length}</p>
+        <p> {`${name}: ${countriesNamed}/${allCountries.length}`}</p>
         )
       } 
       <div>
