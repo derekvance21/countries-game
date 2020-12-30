@@ -3,11 +3,7 @@ html {
   box-sizing: border-box;
 }
 
-p {
-  margin: 5px;
-}
-
-.App-header {
+.App {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
@@ -17,6 +13,10 @@ p {
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+p {
+  margin: 5px;
 }
 
 input {

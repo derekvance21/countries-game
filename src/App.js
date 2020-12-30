@@ -42,23 +42,20 @@ const leaderboardColumns = [{
   headerName: 'Place',
   sortAscending: true,
   initSort: true,
-  width: 2
 },
 {
   field: 'name',
   headerName: 'Name',
-  width: 6
+  sortAscending: true,
 },
 {
   field: 'score',
   headerName: 'Score',
-  width: 2
 },
 {
   field: 'secondsLeft',
   headerName: 'Time Remaining',
   transformer: (secondsLeft) => secondsToTime(secondsLeft),
-  width: 2
 }
 ]
 
@@ -68,17 +65,14 @@ const countryTableColumns = [
     headerName: 'Country',
     sortAscending: true,
     initSort: true,
-    width: 2
   },
   {
     field: 'popularity',
     headerName: 'Popularity',
-    width: 6,
   },
   {
     field: 'named',
     headerName: 'Named',
-    width: 2
   }
 ]
 
@@ -106,7 +100,7 @@ function App() {
 
   function onInputChange(e) {
     const input = e.target.value;
-    // backspace or insertion
+    // insertion or backspace
     if (input.slice(0, -1) !== inputText) {
       currentNode = countriesTrie.nodeAt(input);
     } else { // traverse
@@ -192,13 +186,9 @@ function App() {
       .catch(error => console.log(error))
   }
 
-  return (<div className="App" >
-    <header className="App-header"> 
+  return (
+    <div className="App">
       <div>
-        {/* {gameState === "playing" ? (
-          <p> {`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p> 
-        ) : (<p > 15:00 </p>)
-        }  */}
         <p> {`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p>
       </div>
       {gameState === "ready" ? (
@@ -225,19 +215,18 @@ function App() {
             onChange={(e) => setName(e.target.value)}
           />
         )
-        } 
+        }
         {gameState === "playing" ? (
           <button style={{ display: "inline-block" }} onClick={onGameOver}>Submit Game</button>
           ) : (
           <button placeholder="Name" onClick={onGameStart}>Start Game!</button>)
         } 
-        </div>
-        <div id="map"></div>
-        {gameState === "gameover" &&
-          (<div className="tableDiv"> {leaderboard} {countryTable} </div>)
-        }
-    </header>
-  </div>
+      </div>
+      <div id="map"></div>
+      {gameState === "gameover" &&
+        (<div className="tableDiv"> {leaderboard} {countryTable} </div>)
+      }
+    </div>
   );
 }
 
