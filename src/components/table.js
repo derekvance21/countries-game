@@ -8,8 +8,6 @@ const SortableTable = ({rows, columns, title, id}) => {
     const [sortField, setSortField] = useState(columns.find(column => column.initSort).field || columns[0].field);
     const [sortReverse, setSortReverse] = useState(false);
 
-    const fields = columns.map(column => column.field)
-    
     return (
         <table id={id}>
             <caption>{title}</caption>
@@ -34,8 +32,8 @@ const SortableTable = ({rows, columns, title, id}) => {
                         * (b[sortField].toString().localeCompare(a[sortField].toString(), undefined, {numeric: true}))
                 }).map((row, index) => (
                     <tr key={index} style={{color: row.color}}>
-                        {fields.map(field => (
-                            <td>{row[field]}</td>
+                        {columns.map((column) => (
+                            <td>{column.transformer ? column.transformer(row[column.field]) : row[column.field]}</td>
                         ))}
                     </tr>
                 ))}

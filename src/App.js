@@ -29,6 +29,14 @@ let timerEnd;
 let leaderboard = [];
 let countryTable = [];
 
+function secondsToTime(seconds) {
+  return `${Math.floor(seconds / 60)}:${twoDigitSeconds(seconds % 60)}`
+}
+
+function twoDigitSeconds(seconds) {
+  return seconds < 10 ? `0${seconds}` : seconds;
+}
+
 const leaderboardColumns = [{
   field: 'place',
   headerName: 'Place',
@@ -48,7 +56,8 @@ const leaderboardColumns = [{
 },
 {
   field: 'secondsLeft',
-  headerName: 'Seconds Remaining',
+  headerName: 'Time Remaining',
+  transformer: (secondsLeft) => secondsToTime(secondsLeft),
   width: 2
 }
 ]
@@ -84,6 +93,8 @@ function App() {
     if (gameState === "playing") {
       if (millisecondsLeft <= 0) {
         onGameOver();
+      } else if (countriesNamed === allCountries.length) {
+        onGameOver();
       } else {
         const tick = setInterval(function () {
           setMillisecondsLeft(timerEnd.getTime() - new Date().getTime());
@@ -109,13 +120,7 @@ function App() {
       colorCountry(allCountries[currentNode.id].code);
       setInputText("");
       currentNode = countriesTrie;
-      setCountriesNamed((prevValue) => {
-        if (prevValue + 1 === allCountries.length) {
-          onGameOver();
-        }
-        return prevValue + 1
-      });
-      return;
+      setCountriesNamed((prevValue) => (prevValue + 1));
     } else {
       setInputText(input);
     }
@@ -187,18 +192,15 @@ function App() {
       .catch(error => console.log(error))
   }
 
-  function twoDigitSeconds(seconds) {
-    return seconds < 10 ? `0${seconds}` : seconds;
-  }
-
   return (<div className="App" >
     <header className="App-header"> 
-      {gameState === "playing" ? (
-        <div>
+      <div>
+        {/* {gameState === "playing" ? (
           <p> {`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p> 
-        </div>
-      ) : (<p > 15:00 </p>)
-      } 
+        ) : (<p > 15:00 </p>)
+        }  */}
+        <p> {`${Math.floor(millisecondsLeft / 60000)}:${twoDigitSeconds(Math.floor(millisecondsLeft % 60000 / 1000))}`}</p>
+      </div>
       {gameState === "ready" ? (
         <p> Name all 197 countries before time runs out! </p>
         ) : (
@@ -219,7 +221,7 @@ function App() {
             type="text"
             id="nameInput"
             value={name}
-            placeholder="Enter a name"
+            placeholder="Enter your name"
             onChange={(e) => setName(e.target.value)}
           />
         )
