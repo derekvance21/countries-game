@@ -1,3 +1,8 @@
+# Geography Quiz Game
+
+Name as many countries as you can in fifteen minutes! The game can be played [here](dvance-countries-quiz.netlify.app).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
